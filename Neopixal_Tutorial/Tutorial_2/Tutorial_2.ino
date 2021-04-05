@@ -1,14 +1,3 @@
-// Simple NeoPixel test.  Lights just a few pixels at a time so a
-// 1m strip can safely be powered from Arduino 5V pin.  Arduino
-// may nonetheless hiccup when LEDs are first connected and not
-// accept code.  So upload code first, unplug USB, connect pixels
-// to GND FIRST, then +5V and digital pin 6, then re-plug USB.
-// A working strip will show a few pixels moving down the line,
-// cycling between red, green and blue.  If you get no response,
-// might be connected to wrong end of strip (the end wires, if
-// any, are no indication -- look instead for the data direction
-// arrows printed on the strip).
-
 #include <Adafruit_NeoPixel.h>
 
 #define PIN      6
@@ -23,12 +12,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
+  //Uses the chase function 
 //  chase(strip.Color(255, 0, 0)); // Red
 //  chase(strip.Color(0, 255, 0)); // Green
 //  chase(strip.Color(0, 0, 255)); // Blue
 
-  ranlite(strip.Color(0, 150, 100)); // Cyan
-  strip.clear();
+//This loop will use the ranlite method to turn lights cyan and then on the fifth round pink.
+/*
+  for(uint16_t i = 0; i < 4; i++){
+    ranlite(strip.Color(0, 150, 100)); // Cyan
+    strip.clear();
+    if(i == 3){
+      ranlite(strip.Color(150, 0, 100)); // Pink
+      strip.clear();
+    }
+  }
+  */
+  
+  //This cahnges neopixals by using a range
+  int half =  (strip.numPixels()/2) + (strip.numPixels()%2);
+  strip.fill(strip.Color(255, 0, 0), 0, half);
+  strip.fill(strip.Color(0, 0, 255), half,strip.numPixels());
+  strip.show();
+
+
 }
 
 // This method makes a chain of 4 pixals move all the way down your strand
@@ -52,3 +60,14 @@ static void ranlite(uint32_t r) {
     delay(200);
     }
   }
+
+
+
+
+
+
+
+
+
+
+  
