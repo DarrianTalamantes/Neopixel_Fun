@@ -16,11 +16,11 @@
 #define arr_len( x )  ( sizeof( x ) / sizeof( *x ) )
 
 // Matrix setup params
-// 8 by 8 grid
+// 13 by 23 grid
 // pixal zero starts at top right, flows down in columns, all columns flow in same direction
-Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(8, 8, DATA_PIN,
-NEO_MATRIX_TOP    + NEO_MATRIX_RIGHT +
-NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE + NEO_MATRIX_ZIGZAG,
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(23, 13, DATA_PIN,
+NEO_MATRIX_TOP    + NEO_MATRIX_LEFT +
+NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
 NEO_GRB            + NEO_KHZ800);
 
 
@@ -58,7 +58,7 @@ void loop() {
   
   matrix.fillScreen(0);
   matrix.setCursor(x, 0);
-  scroll(Text[mode],70);
+  scroll(Text[mode],55);
 }
 
 // this does the magic of scrolling
