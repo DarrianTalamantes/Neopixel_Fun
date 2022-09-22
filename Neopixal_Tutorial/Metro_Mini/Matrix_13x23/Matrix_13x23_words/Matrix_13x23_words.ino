@@ -1,8 +1,4 @@
-/* 
-  Example "Protest scroller" for 8x8 WS2812 "NeoPixel Display
-  Assumes you are running a standard Arduino ATMega328 compatible board
-*/
-//sudo chmod a+rw /dev/ttyACM0 is a peice of code allowing aurdino to have permission to read and write
+//sudo chmod a+rw /dev/ttyUSB0
 
 
 #include <Adafruit_GFX.h>
@@ -56,8 +52,8 @@ void loop() {
   // if mode greater than numMode reset
   if (mode > numMode) { mode = 0; }
   
-  matrix.fillScreen(0);
-  matrix.setCursor(x, 0);
+  matrix.fillScreen(0); // Fills the entire screen black
+  matrix.setCursor(x, 3); //Moves the starting row of the letters
   scroll(Text[mode],55);
 }
 
